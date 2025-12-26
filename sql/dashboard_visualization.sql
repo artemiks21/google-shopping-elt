@@ -1,0 +1,55 @@
+SELECT
+    c.COUNTRY,
+    p.EAN AS product_code,
+    ROUND(AVG(f.PRICE), 2) AS avg_price
+FROM FACT_PRICES f
+JOIN DIM_COUNTRY c ON f.COUNTRY_ID = c.COUNTRY_ID
+JOIN DIM_PRODUCT p ON f.PRODUCT_ID = p.PRODUCT_ID
+GROUP BY c.COUNTRY, p.EAN
+ORDER BY c.COUNTRY, avg_price DESC
+LIMIT 100;
+
+SELECT
+    s.SHOP_NAME,
+    p.EAN AS product_code,
+    ROUND(AVG(
+        CASE 
+            WHEN f.OLD_PRICE IS NOT NULL AND f.OLD_PRICE > f.PRICE 
+            THEN f.OLD_PRICE - f.PRICE
+            ELSE 0
+        END
+    ), 2) AS avg_discount
+FROM FACT_PRICES f
+JOIN DIM_SHOP s ON f.SHOP_ID = s.SHOP_ID
+JOIN DIM_PRODUCT p ON f.PRODUCT_ID = p.PRODUCT_ID
+GROUP BY s.SHOP_NAME, p.EAN
+ORDER BY avg_discount DESC
+LIMIT 100;
+
+SELECT
+    s.SHOP_REVIEW_RATING AS shop_rating,
+    p.EAN AS product_code,
+    f.PRICE AS price
+FROM FACT_PRICES f
+JOIN DIM_SHOP s ON f.SHOP_ID = s.SHOP_ID
+JOIN DIM_PRODUCT p ON f.PRODUCT_ID = p.PRODUCT_ID
+WHERE s.SHOP_REVIEW_RATING IS NOT NULL
+LIMIT 500;
+
+SELECT
+    FLOOR(f.PRICE / 10) * 10 AS price_bucket,
+    COUNT(*) AS offers_count
+FROM FACT_PRICES f
+WHERE f.PRICE IS NOT NULL
+GROUP BY price_bucket
+ORDER BY price_bucket;
+
+SELECT
+    p.EAN AS duct_code,
+    COUNT(*) AS offers_count
+FROM FACT_PRICES f
+JOIN DIM_PRODUCT p
+    ON f.PRODUCT_ID = p.PRODUCT_ID
+GROUP BY p.EAN
+ORDER BY offers_count DESC
+LIMIT 20;
