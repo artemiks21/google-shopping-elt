@@ -199,7 +199,7 @@ Na základe dimenzionálneho modelu bolo vytvorených 5 vizualizácií:
 
 ### Priemerná cena produktu podľa krajiny
 
-<img src="main/im2.PNG" width="800">
+<img src="im2.PNG" width="800">
 
 ```sql
 SELECT
