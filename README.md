@@ -199,7 +199,7 @@ Na základe dimenzionálneho modelu bolo vytvorených 5 vizualizácií:
 
 ### Priemerná cena produktu podľa krajiny
 
-<img src="main/im2.png" width="800">
+<img src="main/im2.PNG" width="800">
 
 ```sql
 SELECT
@@ -215,7 +215,7 @@ LIMIT 100;
 ```
 ### Priemerná zľava podľa obchodu a produktu
 
-<img src="im3.png" width="800">
+<img src="im3.PNG" width="800">
 
 ```sql
 SELECT
@@ -254,7 +254,7 @@ LIMIT 500;
 
 ## Distribúcia cien produktov
 
-<img src="im4.png" width="800">
+<img src="im4.PNG" width="800">
 
 ```sql
 SELECT
@@ -268,7 +268,7 @@ ORDER BY price_bucket;
 
 ## Počet ponúk podľa produktu
 
-<img src="im5.png" width="800">
+<img src="im5.PNG" width="800">
 
 ```sql
 SELECT
