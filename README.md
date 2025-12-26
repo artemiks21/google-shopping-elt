@@ -238,7 +238,7 @@ LIMIT 100;
 
 ## Cena produktu vs hodnotenie obchodu
 
-<img src="im1.png" width="800">
+<img src="im1.PNG" width="800">
 
 ```sql
 SELECT
